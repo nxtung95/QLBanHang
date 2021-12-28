@@ -20,6 +20,7 @@ public class BaseDao {
 
     public Connection getConnection() {
         try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             return DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (Exception e) {
             System.out.println("Lỗi khởi tạo connection " + e);
