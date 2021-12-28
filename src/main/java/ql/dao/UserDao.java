@@ -39,7 +39,6 @@ public class UserDao extends BaseDao {
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
                 List<String> roleList = new ArrayList<>();
-                boolean isLast = false;
                 while(rs.next()) {
                     String role = rs.getString("role");
                     roleList.add(role);
