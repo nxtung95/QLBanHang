@@ -16,6 +16,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class WorkTime {
     private int id;
+    private int type;
     private Date startTime;
     private Date endTime;
+    private String description;
 }
