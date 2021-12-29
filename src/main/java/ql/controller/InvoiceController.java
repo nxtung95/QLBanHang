@@ -26,9 +26,6 @@ public class InvoiceController {
         String lastStartWorkTime;
         String lastEndWorkTime;
         List<WorkTime> workTimeList = workTimeDao.getWorkTime();
-        if (workTimeList.isEmpty()) {
-            return false;
-        }
         if (!workTimeList.isEmpty()) {
             int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
             for (WorkTime workTime : workTimeList) {
