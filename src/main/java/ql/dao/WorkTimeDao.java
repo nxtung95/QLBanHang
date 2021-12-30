@@ -24,7 +24,7 @@ public class WorkTimeDao extends BaseDao {
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    workTimeList.add(new WorkTime(rs.getInt("id"), rs.getInt("type"), rs.getDate("startDate"), rs.getDate("endDate"), rs.getString("description")));
+                    workTimeList.add(new WorkTime(rs.getInt("id"), rs.getInt("type"), rs.getTime("start_time"), rs.getTime("end_time"), rs.getString("description")));
                 }
             }
         } catch (Exception e) {

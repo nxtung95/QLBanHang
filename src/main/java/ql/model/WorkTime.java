@@ -4,7 +4,7 @@
  */
 package ql.model;
 
-import java.util.Date;
+import java.sql.Time;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ import lombok.Setter;
 public class WorkTime {
     private int id;
     private int type;
-    private Date startTime;
-    private Date endTime;
+    private Time startTime;
+    private Time endTime;
     private String description;
 }

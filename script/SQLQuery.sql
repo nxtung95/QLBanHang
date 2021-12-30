@@ -33,3 +33,33 @@ VALUES(1, 1),
 (3, 3),
 (3, 4),
 (3, 5);
+
+insert into work_time(type, start_time, end_time, description)
+VALUES(1, '06:00:00', '14:00:00', 'CA SANG'),
+(2, '14:00:00', '22:00:00', 'CA CHIEU'),
+(3, '22:00:00', '06:00:00', 'CA DEM');
+
+insert into customer(id, name, birthday, address)
+VALUES('KH1', 'Khach Hang A', '1985-06-12', 'TP HCM'),
+('KH2', 'Khach Hang B', '1995-01-30', 'HN');
+
+insert into invoice(id, customer_id, user_id, sale_date, discount, total_price)
+VALUES('INVOICE1', 'KH1', 4, '2021-12-30 16:30:55', 0, 150.000),
+('INVOICE2', 'KH1', 4, '2021-12-30 15:22:25', 0, 250.000),
+('INVOICE3', 'KH1', 4, '2021-12-30 21:34:22', 0, 50.000);
+
+insert into product(id, name, price)
+VALUES('PRODUCT1', 'Bim bim', 5.000),
+('PRODUCT2', 'Kep toc', 12.000),
+('PRODUCT3', 'Giay an', 6.500),
+('PRODUCT4', 'Khan mat', 15.000),
+('PRODUCT5', 'Mi goi', 10.000);
+
+insert into detail_invoice(product_id, invoice_id, quantity, price)
+VALUES('PRODUCT1', 'INVOICE1', 10, 50.000),
+('PRODUCT2', 'INVOICE1', 5, 60.000),
+('PRODUCT5', 'INVOICE1', 4, 40.000),
+('PRODUCT4', 'INVOICE2', 10, 150.000),
+('PRODUCT3', 'INVOICE2', 10, 65.000),
+('PRODUCT5', 'INVOICE2', 3, 35.000),
+('PRODUCT1', 'INVOICE3', 10, 50.000);

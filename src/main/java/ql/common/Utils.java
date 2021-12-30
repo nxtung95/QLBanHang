@@ -4,6 +4,7 @@
  */
 package ql.common;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,24 +14,24 @@ import java.util.Date;
  * @author ADMIN
  */
 public class Utils {
-    public static int getHourFromDate(Date date) {
+    public static int getHourFromTime(Time time) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+        calendar.setTime(time);
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         return hours;
     }
     
-    public static String getYesterday() {
+   public static String getYesterday() {
         final Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(cal.getTime());
     }
     
     public static String getNow() {
         final Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(cal.getTime());
     }
 }

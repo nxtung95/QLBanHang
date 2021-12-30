@@ -9,6 +9,7 @@ import java.util.List;
 import ql.controller.UserController;
 import ql.model.User;
 import ql.view.centermanager.CenterManagerForm;
+import ql.view.staff.InTotalAmountForm;
 import ql.view.staff.StaffForm;
 import ql.view.storemanager.StoreManagerForm;
 
@@ -165,8 +166,11 @@ public class LoginForm extends javax.swing.JFrame {
             store.setVisible(true);
         } else if (roleList.contains("NHAN_VIEN")) {
             System.out.print("Open staff form");
-            StaffForm staffForm = new StaffForm();
-            staffForm.setVisible(true);
+            InTotalAmountForm inAmountForm = new InTotalAmountForm();
+            inAmountForm.setUser(user);
+            inAmountForm.setVisible(true);
+//            StaffForm staffForm = new StaffForm();
+//            staffForm.setVisible(true);
         }
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

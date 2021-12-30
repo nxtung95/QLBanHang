@@ -10,18 +10,21 @@ import java.sql.ResultSet;
 
 
 public class InvoiceDao extends BaseDao {
-    public double getTotalAmountByUserId(int userId) {
+    public double getTotalAmount(int userId, String startTime, String endTime) {
         double totalAmount = 0;
         Connection connection = null;
         PreparedStatement ps = null;
         try {
             connection = getConnection();
             StringBuilder sql = new StringBuilder("SELECT SUM(total_price) as totalAmount FROM invoice ");
-            sql.append("INNER JOIN ");
+            sql.append("WHERE user_id = ? ");
+            sql.append("AND sale_date BETWEEN ? AND ?");
             ps = connection.prepareCall(sql.toString());
             ps.setInt(1, userId);
+            ps.setString(2, startTime);
+            ps.setString(3, endTime);
             ResultSet rs = ps.executeQuery();
-            if (rs != null) {
+            if (rs.next()) {
                 totalAmount = rs.getDouble("totalAmount");
             }
         } catch (Exception e) {
