@@ -5,7 +5,10 @@
 
 package ql.view;
 
+import java.util.Date;
 import java.util.List;
+import ql.common.Utils;
+import ql.controller.StaffHistoryController;
 import ql.controller.UserController;
 import ql.model.User;
 import ql.view.centermanager.CenterManagerForm;
@@ -157,20 +160,20 @@ public class LoginForm extends javax.swing.JFrame {
         List<String> roleList = user.getRoleList();
         
         if (roleList.contains("QUANLY_TRUNGTAM")) {
-            System.out.print("Open center manager form");
             CenterManagerForm center = new CenterManagerForm();
             center.setVisible(true);
         } else if (roleList.contains("QUANLY_CUAHANG") && roleList.contains("NHAN_VIEN")) {
-            System.out.print("Open store manager form");
             StoreManagerForm store = new StoreManagerForm();
+            store.setUser(user);
             store.setVisible(true);
         } else if (roleList.contains("NHAN_VIEN")) {
-            System.out.print("Open staff form");
-            InTotalAmountForm inAmountForm = new InTotalAmountForm();
-            inAmountForm.setUser(user);
-            inAmountForm.setVisible(true);
-//            StaffForm staffForm = new StaffForm();
-//            staffForm.setVisible(true);
+            StaffHistoryController staffHistoryController = new StaffHistoryController();
+            boolean result = staffHistoryController.insert(user.getId(), "Đăng nhập vào hệ thống, thời gian: " + Utils.getNow());
+            if (result) {
+                InTotalAmountForm inAmountForm = new InTotalAmountForm();
+                inAmountForm.setUser(user);
+                inAmountForm.setVisible(true);
+            }
         }
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -14,22 +14,35 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+public class User implements Cloneable {
     private int id;
     private String name;
     private Date birthday;
     private String address;
     private String username;
     private String password;
+    private Store store;
 
-    public User(int id, String name, Date birthday, String address, String username, String password) {
+    public User(int id, String name, Date birthday, String address, String username, String password, Store store) {
         this.id = id;
         this.name = name;
         this.birthday = birthday;
         this.address = address;
         this.username = username;
         this.password = password;
+        this.store = store;
+    }
+    
+    public User(String name, Date birthday, String address, Store store) {
+        this.name = name;
+        this.birthday = birthday;
+        this.address = address;
+        this.store = store;
     }
     
     private List<String> roleList;
+    
+    public User clone() throws CloneNotSupportedException {
+        return (User) super.clone();
+    }
 }

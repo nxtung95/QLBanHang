@@ -5,7 +5,9 @@
 package ql.view.staff;
 
 import javax.swing.JOptionPane;
+import ql.common.Utils;
 import ql.controller.InvoiceController;
+import ql.controller.StaffHistoryController;
 import ql.model.User;
 
 public class InTotalAmountForm extends javax.swing.JFrame {
@@ -129,17 +131,23 @@ public class InTotalAmountForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         String input = jTextField1.getText();
         if (input.isBlank()) {
-            JOptionPane.showInputDialog(rootPane, "Cần nhập số tiền ca trước");
+            JOptionPane.showMessageDialog(rootPane, "Cần nhập số tiền ca trước");
             return;
         }
         InvoiceController invoiceController = new InvoiceController();
         double totalAmount = invoiceController.getTotalAmount(user.getId());
-        jLabel5.setText(String.valueOf(totalAmount));
+        String total = totalAmount == 0 ? "0" : Utils.formatCurrency(totalAmount);
+        jLabel5.setText(total);
         jLabel5.setVisible(true);
-        int confirm = JOptionPane.showConfirmDialog(rootPane, "Tổng số tiền ca trước là: " + totalAmount + ", bạn có muốn đến trang bán hàng không?");
-        if (confirm == 1) {
-            StaffForm staffForm = new StaffForm();
-            staffForm.setVisible(true);
+        int confirm = JOptionPane.showConfirmDialog(rootPane, "Tổng số tiền ca trước là: " + total + ", bạn có muốn đến trang bán hàng không?");
+        if (confirm == 0) {
+            StaffHistoryController staffHistoryController = new StaffHistoryController();
+            boolean result = staffHistoryController.insert(user.getId(), "Nhập tổng số tiền ca trước là " + input);
+            if (result) {
+                StaffForm staffForm = new StaffForm();
+                staffForm.setUser(user);
+                staffForm.setVisible(true);
+            }
         }
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
